@@ -1,3 +1,17 @@
+# 1.1.75
+
+## 中文
+
+- 版本 **1.1.75**。
+- Windows 桌面重启改为独立控制器接管：新增 `restart-windows.js` / `restart-windows.ps1`，由 detached PowerShell 全权负责杀进程、robocopy 补齐、asar 迁移与拉起，带 commit / cancel 交接与 breakaway 拒绝保护；boot 阶段不再改动归档（避免 boot-time writer 竞态）。
+- 合并回 1.1.73 / 1.1.74 两项修复：persona-suffix 不再写 `{{cwd}}`（0.2.1 组装插值兼容）与补丁 40 适配 0.2.1-rc.2 `requiredContexts`（清洗写宿主不再被前置校验拦下）。
+
+## English
+
+- **1.1.75**.
+- Windows desktop restart is now owned by a standalone controller: new `restart-windows.js` / `restart-windows.ps1`, where a detached PowerShell handles process shutdown, robocopy top-up, asar swap, and relaunch with commit/cancel handoff and breakaway refusal; boot no longer mutates archives (no boot-time writer race).
+- Re-landed the 1.1.73 / 1.1.74 fixes: persona-suffix no longer writes `{{cwd}}` (0.2.1 assembly interpolation) and patch 40 adapts to the 0.2.1-rc.2 `requiredContexts` shape (host clean settles again).
+
 # 1.1.74
 
 ## 中文
