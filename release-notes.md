@@ -1,3 +1,21 @@
+# 1.1.73
+
+## 中文
+
+- 版本 **1.1.73**，基线对齐 dsh 0.2.1-rc.2。
+- 修 `unknown prompt variable "{{cwd}}" in section "deployment:persona-suffix"`：0.2.1 的 loop 只注册 `provider` / `model`，persona 段仍然插值，写 `{{cwd}}` 会让每一轮在组装阶段直接失败。
+- `deployment:persona-suffix` 不再写工作目录。该信息由 dsh-working-directory 的 runtime context 提供，删掉不丢内容。
+- 一并清掉 `stripHarnessPersona` 里两处会往别的段塞 `{{cwd}}` 的替换。
+- 更新源指向本 fork，避免「更新」把这次修复覆盖回上游代码。
+
+## English
+
+- **1.1.73**, rebased on dsh 0.2.1-rc.2.
+- Fix `unknown prompt variable "{{cwd}}" in section "deployment:persona-suffix"`: the 0.2.1 loop registers only `provider` / `model`, while persona sections are still interpolated, so a `{{cwd}}` reference aborts every turn during assembly.
+- `deployment:persona-suffix` no longer carries the working directory; the working-directory service supplies it as runtime context, so nothing is lost.
+- Dropped the two `stripHarnessPersona` replacements that injected `{{cwd}}` into other sections.
+- Update source points at this fork, so "Update" cannot overwrite the fix with upstream code.
+
 # 1.1.71
 
 ## 中文
