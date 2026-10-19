@@ -1,3 +1,19 @@
+# 1.1.74
+
+## 中文
+
+- 版本 **1.1.74**，基线对齐 dsh 0.2.1-rc.2。
+- 修「清洗没有写进全部宿主，已取消重启 / 无法为用户重启 dsh」：0.2.1-rc.2 的 `dsh-system-prompt` 在 waterfall 之后新增了 `requiredContexts`，`contexts` 折叠从「清空」改为「保留必需项」，补丁 40 的全部锚点都匹配不上旧结构，`COMPLETE_PROMPT_KEEP_INJECT` 写不进宿主。
+- 新增 0.2.1-rc.2 结构锚点：命中后替换为 keep-inject 版本，并保留 `requiredContexts` 过滤语义（不能套用旧替换文本，否则 `suppressRuntimeContext` 会把必需运行时上下文一起清掉）。
+- 修复后 `hostCleanMarkersPresent` 双标记齐全，点「应用 → 重启」不再被前置校验拦下。
+
+## English
+
+- **1.1.74**, rebased on dsh 0.2.1-rc.2.
+- Fix "清洗没有写进全部宿主，已取消重启" (host clean never settles): 0.2.1-rc.2 `dsh-system-prompt` adds `requiredContexts` after the waterfall and folds contexts by keeping required ones instead of clearing them, so every patch-40 anchor missed and `COMPLETE_PROMPT_KEEP_INJECT` could not land.
+- Added a 0.2.1-rc.2 anchor: it rewrites to the keep-inject form while preserving the `requiredContexts` filter (reusing the old replacement would drop required runtime contexts under `suppressRuntimeContext`).
+- With the anchor applied, `hostCleanMarkersPresent` sees both marks again and "Apply → Restart" passes the pre-restart gate.
+
 # 1.1.73
 
 ## 中文
